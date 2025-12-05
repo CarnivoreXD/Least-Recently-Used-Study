@@ -23,11 +23,11 @@ When running from CLion IDE
 4. Click Apply -> Ok
 5. Select 'lru' from the run dropdown (this is the trace generator)
 6. Select Run
-7. Select 'harness-lru' from the run dropdown
+7. Select 'harness-lru' from the run dropdown (this is the harness)
 8. Select Run
 
 This will generate the trace files for the LRU and then it runs the harness and outputs the files to 
-csvs/hashmapProfile.csv and maps/*.txt respectively
+csvs/hashmapProfile.csv and maps/*.txt respectively.
 
 
 
