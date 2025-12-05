@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/Memo/source/repos/priority-queue-study/build/cmake_install.cmake",
+		"C:/Users/Memo/source/repos/priority-queue-study/build/src/implementations/BinaryHeapInVector/cmake_install.cmake",
+		"C:/Users/Memo/source/repos/priority-queue-study/build/utils/comparator.cpp/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

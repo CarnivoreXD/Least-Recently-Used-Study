@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "top_level_main.dir\\Debug\\main.obj",
+            "outputs": [
+                "C:\\Users\\Memo\\source\\repos\\priority-queue-study\\build\\top_level_main.dir\\Debug\\vc143.pdb",
+                "top_level_main.dir\\Debug\\"
+            ],
+            "requires": []
+        }
+    ]
+}

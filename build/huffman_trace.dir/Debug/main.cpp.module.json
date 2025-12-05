@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "huffman_trace.dir\\Debug\\main.obj",
+            "outputs": [
+                "C:\\Users\\Memo\\source\\repos\\priority-queue-study\\build\\huffman_trace.dir\\Debug\\vc143.pdb",
+                "huffman_trace.dir\\Debug\\"
+            ],
+            "requires": []
+        }
+    ]
+}

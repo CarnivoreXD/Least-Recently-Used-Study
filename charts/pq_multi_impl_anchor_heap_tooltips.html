@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Priority Queues — Huffman Trace Timing (Hover Tooltips)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { --fg:#111827; --muted:#6b7280; --border:#e5e7eb; --card:#ffffff; --bg:#f8fafc; }
+  html, body { margin:0; padding:0; background:var(--bg); color:var(--fg); font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif; }
+  .container { max-width: 1040px; margin: 24px auto; padding: 0 16px; }
+  h1 { font-size: 1.25rem; margin: 0 0 12px 0; }
+  .card { background: var(--card); border:1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .row { display:flex; gap:12px; flex-wrap: wrap; align-items: center; }
+  label { display:flex; align-items:center; gap:8px; }
+  input[type="file"] { padding:6px 8px; }
+  #chart { height: 500px; position: relative; }
+  .legend { display:flex; gap:12px; flex-wrap: wrap; margin-top: 8px; }
+  .badge { display:inline-flex; align-items:center; gap:8px; padding:4px 10px; border:1px solid var(--border); border-radius: 999px; background:#fff; font-size: 12px; }
+  .dot { width:10px; height:10px; border-radius:999px; display:inline-block; }
+  .footer { color: var(--muted); font-size: .9rem; margin-top: 12px; }
+  .axis text { font-size: 12px; fill: #374151; }
+  .axis path, .axis line { stroke: #94a3b8; }
+  .grid line { stroke: #e5e7eb; }
+  .grid .domain { display: none; }
+  .title { font-weight: 600; margin-bottom: 6px; }
+  button { padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; background: #f9fafb; cursor: pointer; }
+  button:hover { background:#f3f4f6; }
+  /* Tooltip */
+  .tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: var(--fg);
+    z-index: 20;
+    white-space: nowrap;
+  }
+  .tooltip .hdr { font-weight: 600; margin-bottom: 2px; }
+  .tooltip .sub { color: var(--muted); }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Priority Queues — Huffman Trace Timing (Multiple Implementations)</h1>
+
+    <div class="card">
+      <div class="row">
+        <label>CSV file <input type="file" id="file" accept=".csv" /></label>
+        <button id="useDefault">Load example data</button>
+        <label><input type="checkbox" id="toggleNlogN"> N log N baseline (anchored to <code>binary_heap</code>)</label>
+      </div>
+    </div>
+
+    <div id="chart" class="card"></div>
+    <div id="legend" class="legend"></div>
+    <div class="footer">
+      X-axis is log₂ and starts at 2¹⁰. Rows with N &lt; 2¹⁰ are omitted by design.<br/>
+      Expected columns: <code>impl,profile,trace_path,N,seed,elapsed_ms,ops_total,inserts,findmins,deletemins,extractmins</code>
+    </div>
+  </div>
+
+  <!-- D3 v7 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+  // Default CSV (refreshed; removed the highest quadratic row as requested)
+  const defaultCsv = `impl,profile,trace_path,N,seed,elapsed_ms,ops_total,inserts,findmins,deletemins,extractmins
+quadratic_oracle,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,13.7133,4093,2047,0,0,2046
+binary_heap,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,0.841125,4093,2047,0,0,2046
+binomial_queue,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,2.64117,4093,2047,0,0,2046
+linear_base,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,0.078833,4093,2047,0,0,2046
+binary_heap,huffman_coding,huffman_coding_N_1048576_S_23.trace,1048576,23,2016.43,4194301,2097151,0,0,2097150
+binomial_queue,huffman_coding,huffman_coding_N_1048576_S_23.trace,1048576,23,7077.89,4194301,2097151,0,0,2097150
+linear_base,huffman_coding,huffman_coding_N_1048576_S_23.trace,1048576,23,95.6467,4194301,2097151,0,0,2097150
+binary_heap,huffman_coding,huffman_coding_N_131072_S_23.trace,131072,23,207.664,524285,262143,0,0,262142
+binomial_queue,huffman_coding,huffman_coding_N_131072_S_23.trace,131072,23,669.186,524285,262143,0,0,262142
+linear_base,huffman_coding,huffman_coding_N_131072_S_23.trace,131072,23,11.7492,524285,262143,0,0,262142
+quadratic_oracle,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.014375,49,25,0,0,24
+binary_heap,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.004333,49,25,0,0,24
+binomial_queue,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.022375,49,25,0,0,24
+linear_base,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.001208,49,25,0,0,24
+quadratic_oracle,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,3549.36,65533,32767,0,0,32766
+binary_heap,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,20.3544,65533,32767,0,0,32766
+binomial_queue,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,67.1699,65533,32767,0,0,32766
+linear_base,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,1.48092,65533,32767,0,0,32766
+quadratic_oracle,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,57.8554,8189,4095,0,0,4094
+binary_heap,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,2.03133,8189,4095,0,0,4094
+binomial_queue,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,6.88708,8189,4095,0,0,4094
+linear_base,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,0.162292,8189,4095,0,0,4094
+binary_heap,huffman_coding,huffman_coding_N_262144_S_23.trace,262144,23,431.602,1048573,524287,0,0,524286
+binomial_queue,huffman_coding,huffman_coding_N_262144_S_23.trace,262144,23,1484.19,1048573,524287,0,0,524286
+linear_base,huffman_coding,huffman_coding_N_262144_S_23.trace,262144,23,22.6679,1048573,524287,0,0,524286
+binary_heap,huffman_coding,huffman_coding_N_32768_S_23.trace,32768,23,43.3026,131069,65535,0,0,65534
+binomial_queue,huffman_coding,huffman_coding_N_32768_S_23.trace,32768,23,140.477,131069,65535,0,0,65534
+linear_base,huffman_coding,huffman_coding_N_32768_S_23.trace,32768,23,2.69304,131069,65535,0,0,65534
+quadratic_oracle,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,226.603,16381,8191,0,0,8190
+binary_heap,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,4.37808,16381,8191,0,0,8190
+binomial_queue,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,13.8574,16381,8191,0,0,8190
+linear_base,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,0.349792,16381,8191,0,0,8190
+binary_heap,huffman_coding,huffman_coding_N_524288_S_23.trace,524288,23,934.516,2097149,1048575,0,0,1048574
+binomial_queue,huffman_coding,huffman_coding_N_524288_S_23.trace,524288,23,3404.26,2097149,1048575,0,0,1048574
+linear_base,huffman_coding,huffman_coding_N_524288_S_23.trace,524288,23,45.8118,2097149,1048575,0,0,1048574
+binary_heap,huffman_coding,huffman_coding_N_65536_S_23.trace,65536,23,92.8982,262141,131071,0,0,131070
+binomial_queue,huffman_coding,huffman_coding_N_65536_S_23.trace,65536,23,302.342,262141,131071,0,0,131070
+linear_base,huffman_coding,huffman_coding_N_65536_S_23.trace,65536,23,5.4025,262141,131071,0,0,131070
+quadratic_oracle,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,850.886,32765,16383,0,0,16382
+binary_heap,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,9.42246,32765,16383,0,0,16382
+binomial_queue,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,30.933,32765,16383,0,0,16382
+linear_base,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,0.685458,32765,16383,0,0,16382`;
+
+  // Fixed colors + fallback palette
+  const fixedColors = {
+    quadratic_oracle: '#000000', // black
+    binary_heap:      '#1f77b4', // blue
+    binomial_queue:   '#ff7f0e', // orange
+    linear_base:      '#2ca02c'  // green
+  };
+  const fallbackPalette = [
+    '#d62728', // red
+    '#9467bd', // purple
+    '#8c564b', // brown
+    '#e377c2', // pink
+    '#7f7f7f', // gray
+    '#bcbd22', // olive
+    '#17becf'  // teal
+  ];
+
+  let allRows = [];
+  const fileInput = document.getElementById('file');
+  const useDefaultBtn = document.getElementById('useDefault');
+  const toggleNlogN = document.getElementById('toggleNlogN');
+
+  // Tooltip element (global)
+  const tooltip = d3.select('body').append('div')
+    .attr('class', 'tooltip')
+    .style('opacity', 0);
+
+  useDefaultBtn.addEventListener('click', () => {
+    const rows = d3.csvParse(defaultCsv.trim());
+    rows.forEach(r => { r.N = +r.N; r.elapsed_ms = +r.elapsed_ms; });
+    allRows = rows;
+    render();
+  });
+  toggleNlogN.addEventListener('change', render);
+
+  fileInput.addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = reader.result.replace(/\r\n/g, '\n').trim();
+      const rows = d3.csvParse(text);
+      rows.forEach(r => { r.N = +r.N; r.elapsed_ms = +r.elapsed_ms; });
+      allRows = rows;
+      render();
+    };
+    reader.readAsText(f);
+  });
+
+  function render() {
+    // Filter out N < 2^10
+    const rows = allRows.filter(r => Number.isFinite(r.N) && Number.isFinite(r.elapsed_ms) && r.N >= 1024);
+    const byImpl = d3.groups(rows, d => d.impl);
+    byImpl.forEach(([impl, arr]) => arr.sort((a,b)=>a.N-b.N));
+
+    const container = d3.select('#chart');
+    container.selectAll('*').remove();
+
+    const margin = {top: 24, right: 34, bottom: 56, left: 76}; // right +10 as requested
+    const width = Math.max(360, container.node().clientWidth) - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+
+    const svg = container.append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom);
+
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    if (!rows.length) {
+      g.append('text')
+        .attr('x', width/2).attr('y', height/2)
+        .attr('text-anchor', 'middle')
+        .style('fill', '#6b7280')
+        .text('Load a CSV (or click “Load example data”)');
+      d3.select('#legend').html('');
+      return;
+    }
+
+    // X: log2 scale starting at 2^10
+    const Nmin = d3.min(rows, d => d.N);
+    const Nmax = d3.max(rows, d => d.N);
+    const minPow = Math.max(10, Math.ceil(Math.log2(Nmin)));
+    const maxPow = Math.floor(Math.log2(Nmax));
+    const xTicks = d3.range(minPow, maxPow + 1).map(k => 2 ** k);
+
+    const x = d3.scaleLog().base(2)
+      .domain([2 ** minPow, 2 ** maxPow])
+      .range([0, width]);
+
+    // Y: elapsed_ms linear (no locking)
+    const yMax = d3.max(rows, d => d.elapsed_ms);
+    const y = d3.scaleLinear()
+      .domain([0, yMax]).nice()
+      .range([height, 0]);
+
+    // Axes & grid
+    const xAxis = d3.axisBottom(x)
+      .tickValues(xTicks)
+      .tickFormat(d => `2^${Math.round(Math.log2(d))}`);
+    const yAxis = d3.axisLeft(y).ticks(8);
+
+    const xGrid = d3.axisBottom(x).tickValues(xTicks).tickSize(-height).tickFormat('');
+    const yGrid = d3.axisLeft(y).ticks(8).tickSize(-width).tickFormat('');
+
+    g.append('g').attr('class','grid').attr('transform', `translate(0,${height})`).call(xGrid);
+    g.append('g').attr('class','grid').call(yGrid);
+
+    g.append('g').attr('class','axis').attr('transform', `translate(0,${height})`).call(xAxis);
+    g.append('g').attr('class','axis').call(yAxis);
+
+    g.append('text').attr('x', width/2).attr('y', height+42).attr('text-anchor','middle').text('N (2^k)');
+    g.append('text').attr('transform','rotate(-90)').attr('x', -height/2).attr('y', -56).attr('text-anchor','middle').text('elapsed_ms');
+
+    // Build a color map for implementations (fixed first, then fallback palette as needed)
+    const assigned = new Map();
+    let fp = 0;
+    byImpl.forEach(([impl]) => {
+      assigned.set(impl, fixedColors[impl] || fallbackPalette[(fp++) % fallbackPalette.length]);
+    });
+
+    // Line + points per impl
+    const line = d3.line()
+      .x(d => x(d.N))
+      .y(d => y(d.elapsed_ms))
+      .curve(d3.curveMonotoneX);
+
+    byImpl.forEach(([impl, arr]) => {
+      const col = assigned.get(impl);
+      g.append('path')
+        .datum(arr)
+        .attr('fill','none')
+        .attr('stroke', col)
+        .attr('stroke-width', 2.5)
+        .attr('d', line);
+
+      g.selectAll(`.pt-${cssSafe(impl)}`)
+        .data(arr)
+        .enter().append('circle')
+        .attr('class', `pt-${cssSafe(impl)}`)
+        .attr('r', 4)
+        .attr('cx', d => x(d.N))
+        .attr('cy', d => y(d.elapsed_ms))
+        .attr('fill', col)
+        .on('mouseenter', function(evt, d) {
+          const k = Math.log2(d.N);
+          const powLabel = Number.isInteger(k) ? ` (2^${k})` : '';
+          const html = `<div class="hdr">${d.impl}</div>
+                        <div class="sub">N = ${d.N}${powLabel}</div>
+                        <div>elapsed_ms = ${d.elapsed_ms.toFixed(3)}</div>
+                        <div class="sub">seed ${d.seed} • ${d.profile}</div>`;
+          tooltip.html(html)
+            .style('opacity', 1)
+            .style('border-left', `4px solid ${assigned.get(d.impl)}`);
+          d3.select(this).attr('r', 6);
+        })
+        .on('mousemove', function(evt) {
+          const pad = 12;
+          const xPos = evt.clientX + pad;
+          const yPos = evt.clientY + pad;
+          tooltip.style('left', `${xPos}px`).style('top', `${yPos}px`);
+        })
+        .on('mouseleave', function() {
+          tooltip.style('opacity', 0);
+          d3.select(this).attr('r', 4);
+        });
+    });
+
+    // Optional N log N baseline (dashed gray), ANCHORED TO binary_heap at its leftmost N
+    if (toggleNlogN.checked) {
+      const heapRows = rows.filter(r => r.impl === 'binary_heap');
+      if (heapRows.length) {
+        const leftHeapN = d3.min(heapRows, d => d.N);
+        const atLeft = heapRows.filter(r => r.N === leftHeapN);
+        const ref = d3.mean(atLeft, d => d.elapsed_ms);
+        const scale = ref / (leftHeapN * Math.log2(leftHeapN));
+
+        const baseline = xTicks.map(N => ({ N, y: scale * N * Math.log2(N) }));
+        const baselineLine = d3.line()
+          .x(d => x(d.N))
+          .y(d => y(d.y))
+          .curve(d3.curveMonotoneX);
+
+        g.append('path')
+          .datum(baseline)
+          .attr('fill', 'none')
+          .attr('stroke', '#6b7280')          // muted gray
+          .attr('stroke-dasharray', '6,4')
+          .attr('stroke-width', 2)
+          .attr('d', baselineLine);
+
+        // legend entry for baseline
+        const legend = d3.select('#legend');
+        legend.html('');
+        byImpl.forEach(([impl]) => {
+          const item = legend.append('div').attr('class','badge');
+          item.append('span').attr('class','dot').style('background', assigned.get(impl));
+          item.append('span').text(impl);
+        });
+        const item = legend.append('div').attr('class','badge');
+        const swatch = item.append('span').attr('class','dot').style('background', '#6b7280');
+        swatch.style('border', '2px dashed #6b7280').style('background', 'transparent').style('width','12px').style('height','12px');
+        item.append('span').text('N log N baseline (anchored to binary_heap)');
+      }
+    } else {
+      // legend without baseline
+      const legend = d3.select('#legend');
+      legend.html('');
+      byImpl.forEach(([impl]) => {
+        const item = legend.append('div').attr('class','badge');
+        item.append('span').attr('class','dot').style('background', assigned.get(impl));
+        item.append('span').text(impl);
+      });
+    }
+  }
+
+  function cssSafe(s) {
+    return String(s).replace(/[^a-zA-Z0-9_-]/g, '_');
+  }
+
+  // Auto-load the example on first paint
+  (function init() {
+    const rows = d3.csvParse(defaultCsv.trim());
+    rows.forEach(r => { r.N = +r.N; r.elapsed_ms = +r.elapsed_ms; });
+    allRows = rows;
+    render();
+  })();
+  </script>
+</body>
+</html>

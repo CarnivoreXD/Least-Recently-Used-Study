@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "BinaryHeapInVector.dir\\Debug\\main.obj",
+            "outputs": [
+                "C:\\Users\\Memo\\source\\repos\\priority-queue-study\\build\\src\\implementations\\BinaryHeapInVector\\BinaryHeapInVector.dir\\Debug\\vc143.pdb",
+                "BinaryHeapInVector.dir\\Debug\\"
+            ],
+            "requires": []
+        }
+    ]
+}

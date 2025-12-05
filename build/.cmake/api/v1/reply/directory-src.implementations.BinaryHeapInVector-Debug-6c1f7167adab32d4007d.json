@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "src/implementations/BinaryHeapInVector",
+		"source" : "src/implementations/BinaryHeapInVector"
+	}
+}

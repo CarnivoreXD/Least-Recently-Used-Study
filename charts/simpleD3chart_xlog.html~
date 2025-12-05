@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Huffman Profile — elapsed_ms vs N (log-x)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 20px; }
+  textarea { width: 100%; max-width: 960px; height: 180px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .chart { max-width: 980px; }
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+  .legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+  .swatch { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+  .axis path, .axis line { stroke: #777; shape-rendering: crispEdges; }
+  .grid line { stroke: #eee; }
+  .point { pointer-events: all; }
+  .tip { position: absolute; background: rgba(0,0,0,0.75); color: #fff; padding: 6px 8px; border-radius: 6px;
+         font-size: 12px; pointer-events: none; opacity: 0; transition: opacity .15s ease; }
+  button { margin: 10px 0 16px; }
+</style>
+</head>
+<body>
+
+
+<body>
+
+  <h2>Huffman Profile Timing — elapsed_ms vs N (log-x)</h2>
+
+  <textarea id="csvInput" placeholder="Paste CSV here (first line should be header)"></textarea>
+  <br />
+  <button id="renderBtn">Render</button>
+
+  <div id="chart" class="chart"></div>
+  <div id="legend" class="legend"></div>
+  <div id="tip" class="tip"></div>
+
+  <script>
+    (function() {
+	const btn = document.getElementById('renderBtn');
+	const ta  = document.getElementById('csvInput');
+	const chartEl = document.getElementById('chart');
+	const legendEl = document.getElementById('legend');
+	const tip = document.getElementById('tip');
+
+	const color = d3.scaleOrdinal(d3.schemeTableau10);
+
+	function coerceRow(d) {
+            d.impl        = d.impl ?? '';
+            d.profile     = d.profile ?? '';
+            d.trace_path  = d.trace_path ?? '';
+            d.N           = +d.N;
+            d.seed        = +d.seed;
+            d.elapsed_ms  = +d.elapsed_ms;
+            d.ops_total   = d.ops_total != null ? +d.ops_total : null;
+            d.inserts     = d.inserts != null ? +d.inserts : null;
+            d.findmins    = (d.findmins ?? d.findMins) != null ? +(d.findmins ?? d.findMins) : null;
+            d.deletemins  = (d.deletemins ?? d.deleteMins) != null ? +(d.deletemins ?? d.deleteMins) : null;
+            d.extractmins = (d.extractmins ?? d.extractMins) != null ? +(d.extractmins ?? d.extractMins) : null;
+            return d;
+	}
+
+	function render() {
+            const raw = ta.value.trim();
+            if (!raw) {
+		chartEl.innerHTML = '<p>Paste CSV above and click Render.</p>';
+		legendEl.innerHTML = '';
+		return;
+	    }
+
+	    const data = d3.csvParse(raw, coerceRow).filter(d => Number.isFinite(d.N) && Number.isFinite(d.elapsed_ms));
+	    if (!data.length) {
+	        chartEl.innerHTML = '<p>Could not parse any rows. Check header and numbers.</p>';
+		legendEl.innerHTML = '';
+		return;
+	    }
+
+	    const byImpl = d3.group(data, d => d.impl || '(impl)');
+            const series = Array.from(byImpl, ([impl, rows]) => ({
+		key: impl,
+		values: rows.sort((a,b) => d3.ascending(a.N, b.N))
+            }));
+
+            color.domain(series.map(s => s.key));
+
+            const margin = { top: 24, right: 24, bottom: 52, left: 70 };
+            const width  = Math.min(960, chartEl.clientWidth || 960);
+            const height = 420;
+
+            const Nmin = d3.min(data, d => d.N);
+            const Nmax = d3.max(data, d => d.N);
+            const msMax = d3.max(data, d => d.elapsed_ms);
+
+            // Fixed log x-axis
+            const x = d3.scaleLog()
+		  .domain([Nmin, Nmax])
+		  .range([margin.left, width - margin.right])
+		  .nice();
+
+            // y is linear in milliseconds
+            const y = d3.scaleLinear()
+		  .domain([0, msMax]).nice()
+		  .range([height - margin.bottom, margin.top]);
+
+            // Build SVG
+            chartEl.innerHTML = '';
+            const svg = d3.select(chartEl)
+		  .append('svg')
+		  .attr('width', width)
+		  .attr('height', height);
+
+            // Axes
+            const xAxis = g => {
+		// ticks at powers of two between Nmin and Nmax
+		const ticks = [];
+		const minPow = Math.ceil(Math.log2(Nmin));
+		const maxPow = Math.floor(Math.log2(Nmax));
+		for (let k = minPow; k <= maxPow; ++k) ticks.push(2 ** k);
+
+		g.attr('class', 'axis')
+		    .attr('transform', `translate(0,${height - margin.bottom})`)
+		    .call(d3.axisBottom(x).tickValues(ticks).tickFormat(d3.format('~s')))
+		    .call(s => s.append('text')
+			  .attr('x', width - margin.right)
+			  .attr('y', 40)
+			  .attr('fill', 'currentColor')
+			  .attr('text-anchor', 'end')
+			  .text('N (log scale)'));
+            };
+
+            const yAxis = g => {
+		g.attr('class', 'axis')
+		    .attr('transform', `translate(${margin.left},0)`)
+		    .call(d3.axisLeft(y).ticks(8))
+		    .call(s => s.select('.domain').remove())
+		    .call(s => s.append('text')
+			  .attr('x', 0)
+			  .attr('y', margin.top - 12)
+			  .attr('fill', 'currentColor')
+			  .attr('text-anchor', 'start')
+			  .text('elapsed_ms'));
+            };
+
+            // Grid (vertical from x ticks; horizontal from y ticks)
+            svg.append('g')
+		.attr('class', 'grid')
+		.attr('transform', `translate(0,${height - margin.bottom})`)
+		.call(d3.axisBottom(x).tickValues(x.ticks ? x.ticks(10) : []).tickSize(-(height - margin.top - margin.bottom)).tickFormat(() => ''))
+		.selectAll('line').attr('stroke', '#eee');
+
+            svg.append('g')
+		.attr('class', 'grid')
+		.attr('transform', `translate(${margin.left},0)`)
+		.call(d3.axisLeft(y).ticks(8).tickSize(-(width - margin.left - margin.right)).tickFormat(() => ''))
+		.selectAll('line').attr('stroke', '#eee');
+
+            svg.append('g').call(xAxis);
+            svg.append('g').call(yAxis);
+
+            // Line + points
+            const line = d3.line()
+		  .x(d => x(d.N))
+		  .y(d => y(d.elapsed_ms));
+
+            const tip = document.getElementById('tip');
+
+            series.forEach(s => {
+		svg.append('path')
+		    .datum(s.values)
+		    .attr('fill', 'none')
+		    .attr('stroke', color(s.key))
+		    .attr('stroke-width', 2)
+		    .attr('d', line);
+
+		svg.append('g')
+		    .selectAll('circle')
+		    .data(s.values)
+		    .join('circle')
+		    .attr('class', 'point')
+		    .attr('r', 3.5)
+		    .attr('cx', d => x(d.N))
+		    .attr('cy', d => y(d.elapsed_ms))
+		    .attr('fill', color(s.key))
+		    .on('mouseenter', (event, d) => {
+			tip.style.opacity = 1;
+			tip.innerHTML = `
+                <div><b>${d.impl}</b> — ${d.profile || ''}</div>
+                <div>N=${d.N}, seed=${d.seed}</div>
+                <div>elapsed_ms=${d.elapsed_ms}</div>
+                <div>ops_total=${d.ops_total ?? ''}</div>
+              `;
+	                tip.style.left = (event.pageX + 12) + 'px';
+			tip.style.top  = (event.pageY + 12) + 'px';
+		    })
+		    .on('mouseleave', () => tip.style.opacity = 0);
+	    });
+
+	    // Legend
+	    legendEl.innerHTML = '';
+	    series.forEach(s => {
+	        const item = document.createElement('div');
+		item.className = 'legend-item';
+		item.innerHTML = `<span class="swatch" style="background:${color(s.key)}"></span>${s.key}`;
+		legendEl.appendChild(item);
+            });
+	}
+
+	btn.addEventListener('click', render);
+
+	// optional: prefill with your sample
+	document.getElementById('csvInput').value =
+	    `impl,profile,trace_path,N,seed,elapsed_ms,ops_total,inserts,findmins,deletemins,extractmins
+    binary_heap,huffman_coding,huffman_coding_N_1024_S_13.trace,1024,13,0.97625,4093,2047,0,0,2046
+    binary_heap,huffman_coding,huffman_coding_N_1048576_S_13.trace,1048576,13,1951.3,4194301,2097151,0,0,2097150
+    binary_heap,huffman_coding,huffman_coding_N_131072_S_13.trace,131072,13,185.766,524285,262143,0,0,262142
+    binary_heap,huffman_coding,huffman_coding_N_13_S_13.trace,13,13,0.009584,49,25,0,0,24
+    binary_heap,huffman_coding,huffman_coding_N_16384_S_13.trace,16384,13,19.6643,65533,32767,0,0,32766
+    binary_heap,huffman_coding,huffman_coding_N_2048_S_13.trace,2048,13,1.78321,8189,4095,0,0,4094
+    binary_heap,huffman_coding,huffman_coding_N_262144_S_13.trace,262144,13,405.857,1048573,524287,0,0,524286
+    binary_heap,huffman_coding,huffman_coding_N_32768_S_13.trace,32768,13,40.444,131069,65535,0,0,65534
+    binary_heap,huffman_coding,huffman_coding_N_4096_S_13.trace,4096,13,3.783,16381,8191,0,0,8190
+    binary_heap,huffman_coding,huffman_coding_N_524288_S_13.trace,524288,13,889.825,2097149,1048575,0,0,1048574
+    binary_heap,huffman_coding,huffman_coding_N_65536_S_13.trace,65536,13,90.2015,262141,131071,0,0,131070
+    binary_heap,huffman_coding,huffman_coding_N_8192_S_13.trace,8192,13,8.97308,32765,16383,0,0,16382`;
+    })();
+  </script>
+
+</body>
+</html>

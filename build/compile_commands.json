@@ -1,0 +1,140 @@
+[
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/top_level_main.dir/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/main.cpp",
+  "output": "CMakeFiles/top_level_main.dir/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/src/harness/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/harness/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/harness/main.cpp",
+  "output": "CMakeFiles/harness.dir/src/harness/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp",
+  "output": "CMakeFiles/harness.dir/src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/utils/comparator.cpp.o -c /home/student/grojas/Project5/priority-queue-study/utils/comparator.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/utils/comparator.cpp",
+  "output": "CMakeFiles/harness.dir/utils/comparator.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/src/implementations/BinomialQueues/BinomialQueue.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BinomialQueue.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BinomialQueue.cpp",
+  "output": "CMakeFiles/harness.dir/src/implementations/BinomialQueues/BinomialQueue.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/src/implementations/BinomialQueues/BQnode.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BQnode.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BQnode.cpp",
+  "output": "CMakeFiles/harness.dir/src/implementations/BinomialQueues/BQnode.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/src/implementations/LinearBaseLine/LinearBaseLine.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/LinearBaseLine/LinearBaseLine.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/LinearBaseLine/LinearBaseLine.cpp",
+  "output": "CMakeFiles/harness.dir/src/implementations/LinearBaseLine/LinearBaseLine.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness.dir/src/implementations/Oracle/QuadraticOracle.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/Oracle/QuadraticOracle.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/Oracle/QuadraticOracle.cpp",
+  "output": "CMakeFiles/harness.dir/src/implementations/Oracle/QuadraticOracle.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/huffman_trace.dir/src/trace-generators/huffman_coding/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/trace-generators/huffman_coding/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/trace-generators/huffman_coding/main.cpp",
+  "output": "CMakeFiles/huffman_trace.dir/src/trace-generators/huffman_coding/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness-lru.dir/src/harness-lru/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/harness-lru/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/harness-lru/main.cpp",
+  "output": "CMakeFiles/harness-lru.dir/src/harness-lru/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/harness-lru.dir/src/harness-lru/HashTableDictionary.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/harness-lru/HashTableDictionary.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/harness-lru/HashTableDictionary.cpp",
+  "output": "CMakeFiles/harness-lru.dir/src/harness-lru/HashTableDictionary.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o CMakeFiles/lru.dir/src/trace-generators/lru/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/trace-generators/lru/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/trace-generators/lru/main.cpp",
+  "output": "CMakeFiles/lru.dir/src/trace-generators/lru/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinaryHeapInVector/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinaryHeapInVector/main.cpp",
+  "output": "src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/BinaryHeapInVector.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp",
+  "output": "src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/BinaryHeapInVector.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/__/__/__/utils/comparator.cpp.o -c /home/student/grojas/Project5/priority-queue-study/utils/comparator.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/utils/comparator.cpp",
+  "output": "src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/__/__/__/utils/comparator.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/__/__/__/utils/TraceConfig.cpp.o -c /home/student/grojas/Project5/priority-queue-study/utils/TraceConfig.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/utils/TraceConfig.cpp",
+  "output": "src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/__/__/__/utils/TraceConfig.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/main.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/main.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/main.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/main.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/BQnode.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BQnode.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BQnode.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/BQnode.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/BinomialQueue.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BinomialQueue.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BinomialQueue.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/BinomialQueue.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/SmallIntMixedOperations.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/SmallIntMixedOperations.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/SmallIntMixedOperations.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/SmallIntMixedOperations.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/InvertedListDictionary.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/InvertedListDictionary.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/InvertedListDictionary.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/InvertedListDictionary.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/BinomialQueueTester.cpp.o -c /home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BinomialQueueTester.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/src/implementations/BinomialQueues/BinomialQueueTester.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/BinomialQueueTester.cpp.o"
+},
+{
+  "directory": "/home/student/grojas/Project5/priority-queue-study/build",
+  "command": "/usr/lib64/ccache/g++ -g -std=gnu++17 -o utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/__/__/__/utils/comparator.cpp.o -c /home/student/grojas/Project5/priority-queue-study/utils/comparator.cpp",
+  "file": "/home/student/grojas/Project5/priority-queue-study/utils/comparator.cpp",
+  "output": "utils/comparator.cpp/CMakeFiles/BinomialQueues.dir/__/__/__/utils/comparator.cpp.o"
+}
+]

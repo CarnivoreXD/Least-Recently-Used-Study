@@ -1,0 +1,10 @@
+^C:\USERS\MEMO\SOURCE\REPOS\PRIORITY-QUEUE-STUDY\BUILD\CMAKEFILES\2F77E0CE44D82F68BB84923FB1E3C2FF\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Memo/source/repos/priority-queue-study -BC:/Users/Memo/source/repos/priority-queue-study/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Memo/source/repos/priority-queue-study/build/priority-queue-study.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

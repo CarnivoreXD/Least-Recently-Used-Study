@@ -1,0 +1,10 @@
+^C:\USERS\MEMO\SOURCE\REPOS\PRIORITY-QUEUE-STUDY\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Memo/source/repos/priority-queue-study -BC:/Users/Memo/source/repos/priority-queue-study/build --check-stamp-file C:/Users/Memo/source/repos/priority-queue-study/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

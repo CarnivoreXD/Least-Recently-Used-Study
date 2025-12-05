@@ -1,0 +1,174 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					"build" : "src/implementations/BinaryHeapInVector",
+					"jsonFile" : "directory-src.implementations.BinaryHeapInVector-Debug-6c1f7167adab32d4007d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "src/implementations/BinaryHeapInVector",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "utils/comparator.cpp",
+					"jsonFile" : "directory-utils.comparator.cpp-Debug-0af59461946fc480b6aa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "src/implementations/BinomialQueues",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "priority-queue-study",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "BinaryHeapInVector",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "BinomialQueues",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "BinaryHeapInVector::@dc84c99316c65ee76636",
+					"jsonFile" : "target-BinaryHeapInVector-Debug-f029e3cc2c5d8837750a.json",
+					"name" : "BinaryHeapInVector",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "BinomialQueues::@86270732a5d6a63edb4b",
+					"jsonFile" : "target-BinomialQueues-Debug-8475b70270c12ceedd1d.json",
+					"name" : "BinomialQueues",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "harness::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-harness-Debug-96dab534ed5fad411393.json",
+					"name" : "harness",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "harness-lru::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-harness-lru-Debug-c4d67fb42ffdc285d811.json",
+					"name" : "harness-lru",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "huffman_trace::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-huffman_trace-Debug-4bddbc432378a97c09dd.json",
+					"name" : "huffman_trace",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lru::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lru-Debug-ff1565a086ec047560ad.json",
+					"name" : "lru",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "top_level_main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-top_level_main-Debug-9ba9b61c3d897d020673.json",
+					"name" : "top_level_main",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/student/grojas/Project5/priority-queue-study/build",
+		"source" : "/home/student/grojas/Project5/priority-queue-study"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

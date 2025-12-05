@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "harness.dir\\Debug\\LinearBaseLine.obj",
+            "outputs": [
+                "C:\\Users\\Memo\\source\\repos\\priority-queue-study\\build\\harness.dir\\Debug\\vc143.pdb",
+                "harness.dir\\Debug\\"
+            ],
+            "requires": []
+        }
+    ]
+}

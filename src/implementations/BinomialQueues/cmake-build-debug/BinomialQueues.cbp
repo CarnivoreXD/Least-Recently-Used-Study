@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="BinomialQueues"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BinomialQueues">
+				<Option output="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/BinomialQueues" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 BinomialQueues"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="BinomialQueues/fast">
+				<Option output="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/BinomialQueues" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 BinomialQueues/fast"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/BQnode.cpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/BQnode.hpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/BinomialQueue.cpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/BinomialQueue.hpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/BinomialQueueTester.cpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/BinomialQueueTester.hpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/InvertedListDictionary.cpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/InvertedListDictionary.hpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/SmallIntMixedOperations.cpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/SmallIntMixedOperations.hpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/main.cpp">
+			<Option target="BinomialQueues"/>
+		</Unit>
+		<Unit filename="/Users/kooshesh/Courses/2023spring/cs315/BinomialQueues/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

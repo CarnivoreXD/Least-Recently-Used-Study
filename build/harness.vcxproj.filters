@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\src\harness\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\BinaryHeapInVector\BinaryHeapInVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\utils\comparator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\BinomialQueues\BinomialQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\BinomialQueues\BQnode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\LinearBaseLine\LinearBaseLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\Oracle\QuadraticOracle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Memo\source\repos\priority-queue-study\src\harness\Operation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\BinaryHeapInVector\BinaryHeapInVector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\BinomialQueues\BinomialQueue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Memo\source\repos\priority-queue-study\src\harness\RunMetaData.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\LinearBaseLine\LinearBaseLine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Memo\source\repos\priority-queue-study\src\implementations\Oracle\QuadraticOracle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Memo\source\repos\priority-queue-study\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EA6DD07D-41EE-32CD-839A-6F1789395AB8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{2968F83B-7172-3BB6-8F0F-42AA3EEA1197}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,77 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "harness",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/harness",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/harness",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+
+        {
+            "name": "harness-lru",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/harness-lru",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/harness-lru",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+        {
+            "name": "lru_trace_generator",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/lru",
+            "args": ["20980712_uniq_words.txt"],
+            "cwd": "${workspaceFolder}/src/trace-generators/lru",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+
+        {
+            "name": "huffman_trace",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/huffman_trace",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/trace-generators/huffman_coding",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+        {
+            "name": "BinaryHeapInVector",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/BinaryHeapInVector",
+            "args": ["input.txt"],
+            "cwd": "${workspaceFolder}/src/implementations/BinaryHeapInVector",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+        {
+            "name": "BinomialQueues",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/BinomialQueues",
+            "args": ["inputValues.txt"],
+            "cwd": "${workspaceFolder}/src/implementations/BinomialQueues",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+        {
+            "name": "top_level_main",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/top_level_main",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        }
+    ]
+}
