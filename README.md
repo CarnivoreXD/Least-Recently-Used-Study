@@ -1,20 +1,30 @@
-# Project 5 Batch and Drain
+# Project 5 Least Recently Used Analysis
 
 ## Student Information:
 
 Guillermo Rojas<br>
 Student ID: 008008657<br>
-https://github.com/CarnivoreXD/priority-queue-study
+https://github.com/CarnivoreXD/Least-Recently-Used-Study
+
+
+## Running my Project
+
+When running from CLion IDE set the working directory for lru(this is the lru trace) and harness-lru as follows: 
+
+| Target | Working Directory |
+|--------|-------------------|
+| `lru` | `$PROJECT_DIR$/src/trace-generators/lru` |
+| `harness-lru` | `$PROJECT_DIR$/src/harness-lru` |
 
 ## Collaboration & Sources:
 
-This work is primarily my own. I used the following resources for learning, debugging, and comparison
+This work is primarily my own I used the following as troubleshooting resources and ideas:
 
-I used geeksforgeeks, stackoverflow, and chatGPT to debug and compare my code when I was getting errors when trying to make trace files for the batch then drain
+-ChatGPT and Claude for debugging and understanding the project architecture. I also used this to understand JSON files and how to properly use them to run the project on VSCode since CLion uses .idea and CMake as the source of the configurations
 
-I used chatGpt to diagnose an error where the output was not being saved as a csv result and troubleshot it that way.
+-GeeksForGeeks and StackOverflow for C++ syntax issues and questions
 
-I had claude help me understand how to modify the trace generator to produce both profiles because I was running into issues trying to copy the code from the huffman code.
+## Project 
 
 
 ## Implementation Details:
