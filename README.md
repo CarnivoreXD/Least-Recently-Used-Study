@@ -9,12 +9,27 @@ https://github.com/CarnivoreXD/Least-Recently-Used-Study
 
 ## Running my Project
 
-When running from CLion IDE set the working directory for lru(this is the lru trace) and harness-lru as follows: 
+When running from CLion IDE
+
+1. Open the project in CLion
+2. Go to Run -> Edit Configurations
+3. Set working directories for the following targets as stated:
 
 | Target | Working Directory |
 |--------|-------------------|
 | `lru` | `$PROJECT_DIR$/src/trace-generators/lru` |
 | `harness-lru` | `$PROJECT_DIR$/src/harness-lru` |
+
+4. Click Apply -> Ok
+5. Select 'lru' from the run dropdown (this is the trace generator)
+6. Select Run
+7. Select 'harness-lru' from the run dropdown
+8. Select Run
+
+This will generate the trace files for the LRU and then it runs the harness and outputs the files to 
+csvs/hashmapProfile.csv and maps/*.txt respectively
+
+
 
 ## Collaboration & Sources:
 
