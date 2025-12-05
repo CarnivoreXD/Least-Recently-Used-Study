@@ -29,3 +29,5 @@
 4	16	1764142212016536863	CMakeFiles/huffman_trace.dir/src/trace-generators/huffman_coding/main.cpp.o	c1a8f0b91424ce5b
 4	272	1764124184258054392	CMakeFiles/harness.dir/src/implementations/LinearBaseLine/LinearBaseLine.cpp.o	725222b16516e599
 6	727	1764656875134381149	CMakeFiles/harness-lru.dir/src/harness-lru/HashTableDictionary.cpp.o	421ddc264a33e8b6
+5	1626	1764914432223200269	CMakeFiles/harness-lru.dir/src/harness-lru/main.cpp.o	4f282ff257837307
+1626	1747	1764914432517203657	harness-lru	7c674267b81f9b7f

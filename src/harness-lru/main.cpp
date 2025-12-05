@@ -284,8 +284,8 @@ int main() {
                 std::ofstream mapFile("../../maps/double_N" + std::to_string(run_meta_data.N) + ".txt");
                 if (mapFile.is_open()) {
                     mapFile << "compaction_on double_probing " << tableSize << "\n\n";
-                    mapFile << hashTable_single.beforeCompactionMap << "\n\n";
-                    mapFile << hashTable_single.afterCompactionMap;
+                    mapFile << hashTable_double.beforeCompactionMap << "\n\n";
+                    mapFile << hashTable_double.afterCompactionMap;
                     mapFile.close();
                 }
             }
